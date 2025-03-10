@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% include 'link.html' %}
+    {% include 'base.html' %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clienty McClientface</title>    
+</head>
+<body id="bg" style="background-image: url('{% static "image.jpg" %}')";>
+    <div class="messages">
+      
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        {{ message }}
+        {% endfor %}
+        {% endif %}   
+
+    </div>
+        <div class="login-container">
+            <h1 >Login</h1>
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <label>
+                    <a href="/forgetpass_mail">Forget Password?</a>
+                </label>
+                
+                <button type="submit" value="submit">Login</button>
+            </form>
+        </div>
+          <a onclick="show()">Create an account</a>   
+        <div class="signupgae">
+            <h1><center>Signup</center></h1>
+            <form action="{% url 'signup'%}" method="POST">
+                {% csrf_token %}
+                {{form}}
+                <button type="submit" value="submit" class="signupbtn">Signup</button>
+                <span class="span-btn" value="delete"><center>Cancel</center></span>
+            </form>
+        </div>
+        
+     <footer>
+        <p>© 2024 Your Company. All rights reserved.</p>
+     </footer>
+     <script>
+        var dialogOverlay = document.querySelector(".dialog-overlay")
+var dialog_content = document.querySelector(".dialog-content")
+var overlay=document.querySelector(".overlay")
+var signupgae=document.querySelector(".signupgae")
+var signupbtn=document.getElementById("signupbtn")
+var cancelbutton=document.querySelector(".span-btn")
+function show(){
+    overlay.style.display="block"
+    signupgae.style.display="block"
+}
+cancelbutton.addEventListener("click", function(){
+    overlay.style.display="none"
+    signupgae.style.display="none"
+})
+       
+function openDialog() {
+    dialogOverlay.classList.add('show');
+}
+function closeDialog() {
+    dialogOverlay.classList.remove('show');
+}
+     </script>
+</body>
+</html>

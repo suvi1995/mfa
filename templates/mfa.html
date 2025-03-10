@@ -1,0 +1,75 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clienty McClientface</title>    
+</head>
+<style>
+    .mfa-container{
+    width: 150%;
+    max-width: 500px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 15px rgba(0.8, 0.8, 0.8, 0.8);
+    }
+    .mfa-container h1{
+        text-align: center;
+    }
+    button{
+        width: 10%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        margin-bottom: 15px;
+        margin-left: 5%;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 20px;
+        cursor: pointer; 
+        display: inline-block;  
+    }
+    span{
+display: inline-block;
+width: 10%;
+margin-left: 39%;
+padding: 10px;
+background-color: #007BFF;
+color: white;
+columns: white;
+border: 1px solid #ccc;
+border-radius: 10px;
+font-size: 20px;
+cursor: pointer;
+text-align: center;
+    }
+span:hover{
+    background-color: red;
+}
+button:hover{
+    background-color: blue;
+}
+</style>
+<body>
+    <form action="{% url 'mfa' %}" method="POST">
+        {% csrf_token %}
+        <div class="mfa-container"> 
+           
+            <h1>Select the MFA device to verify your account</h1>
+            <p> Choose the one of the authedication methode to verify your account</p>
+            <input type="radio" name="auth" value="qr"> Authendicator APP<br>
+            <img src="static/scan.jpg" width="150" height="100"> <br>
+            <p>Authendicate the your account by scan the QR in the authendicated APP in your mobile </p>
+            <input type="radio" name="auth" value="totp"> TOTP Token<br>
+            <img src="static/OIP3.jpg" width="100"><br>
+            <p>Aunthendicate your account through Time-based ont time password Token</p>
+        </div>
+            <span class="can-btn" value="delete">Cancel</span>
+            <button type="submit" value="submit">Continue</button>
+    </form>  
+</body>

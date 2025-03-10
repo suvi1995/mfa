@@ -1,0 +1,80 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clienty McClientface</title>    
+</head>
+<style>
+    .otp-container{
+    width: 150%;
+    max-width: 500px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 15px rgba(0.8, 0.8, 0.8, 0.8);
+    }
+    .otp-container h1{
+        text-align: center;
+    }
+    button{
+        width: 20%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        margin-bottom: 15px;
+        margin-left: 60%;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 20px;
+        cursor: pointer; 
+        display: inline-block;  
+    }
+    span{
+display: inline-block;
+width: 10%;
+margin-left: 39%;
+padding: 10px;
+background-color: #007BFF;
+color: white;
+columns: white;
+border: 1px solid #ccc;
+border-radius: 10px;
+font-size: 20px;
+cursor: pointer;
+text-align: center;
+    }
+span:hover{
+    background-color: red;
+}
+button:hover{
+    background-color: blue;
+}
+.otp-container p{
+    font-size: 18px;
+}
+.otp-container input[type="email"],
+.otp-container input[type="text"]{
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 20px;
+}
+</style>
+<body>
+    <form action="{% url 'mfa_otp' %}" method="POST">
+        {% csrf_token %}
+      <div class="otp-container">
+        <h1>TOTP Token</h1>
+        <p>TOTP TOKEN:</p>
+        <input type="text" name="otp">
+        <button type="submit">Sumbit</button>
+      </div>
+    </form>  
+</body>
